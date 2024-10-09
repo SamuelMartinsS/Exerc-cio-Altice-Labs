@@ -1,0 +1,81 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Labseq sequence",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/labseq/{n}": {
+      "get": {
+        "summary": "Generate a value from the sequence.",
+        "description": "\"n\" must be positive!",
+        "parameters": [
+          {
+            "name": "n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "calculate the l(n)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a generated value.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Value": {
+                      "type": "string",
+                      "example": "2"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request when n is less than 0.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "400"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on the server side.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "500"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
