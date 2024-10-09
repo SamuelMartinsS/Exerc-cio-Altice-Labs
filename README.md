@@ -1,13 +1,9 @@
-# sequence
+# Sequencia
 
-How to start the sequence application
+Como iniciar a aplicação (Netbeans)
 ---
 
-1. Run `mvn clean install` to build your application
-1. Start application with `java -jar target/labseq-1.0-SNAPSHOT.jar server config.yml`
-1. To check that your application is running enter url `http://localhost:8080`
-
-Health Check
----
-
-To see your applications health enter url `http://localhost:8081/healthcheck`
+1. Nas propriedades do projeto deve ser registado o argumento 'server'
+2. Iniciar o programa através da opção 'Run' do IDE
+3. Verificar o url `http://localhost:8081/healthcheck`
+4. Entrar no url `http://localhost:8080/labseq/n` sendo n um número inteiro não negativo  
