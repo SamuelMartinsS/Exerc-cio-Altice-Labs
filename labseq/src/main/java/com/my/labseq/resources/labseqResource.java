@@ -38,7 +38,8 @@ public class labseqResource {
         Map<String,String> mapResponse = new HashMap<>();
         try{
             if(n < 0){
-                mapResponse.put("Status: ", "400");
+                mapResponse.put("status", "400");
+                mapResponse.put("value", "none");
                 return Response.status(Response.Status.CONFLICT).type(MediaType.APPLICATION_JSON).entity(mapResponse)
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
@@ -47,7 +48,8 @@ public class labseqResource {
             }
             else{
                 generateSequence(n);
-                mapResponse.put("Value: ", ""+vecSequence.get(n));
+                mapResponse.put("status", "200");
+                mapResponse.put("value", ""+vecSequence.get(n));
                 return Response.status(Response.Status.OK).type(MediaType.APPLICATION_JSON).entity(mapResponse)                
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
@@ -55,7 +57,8 @@ public class labseqResource {
                 .build();
             }
         }catch(Exception e){
-            mapResponse.put("Status: ", "500");            
+            mapResponse.put("status", "500");  
+            mapResponse.put("value", "none");          
             return Response.status(Response.Status.BAD_REQUEST).type(MediaType.APPLICATION_JSON).entity(mapResponse)                
             .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
             .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
@@ -63,7 +66,7 @@ public class labseqResource {
         }
     }
 
-    //Função 
+    //Gerar sequencia de Labseq
     public synchronized void generateSequence(int n){
         try{
             int iSequenceSize = vecSequence.size();
